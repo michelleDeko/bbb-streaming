@@ -10,7 +10,13 @@ All you need is Docker running on your machine and a media server such as Youtub
 
 Once you fetch bbb-streaming on your BigBlueButton server, you need to update a few environment variables including access to your BigBlueButton server, ID of the BigBlueButton meeting/class that you want to stream and Youtube or Facebook RTMP url (see below).
 
-After changing environment variables, start the docker container and start your BigBlueButton class. You will notice a new user with the name `live` joined your class. In your Youtube or Facebook streaming dashboard, you would notice your class getting streamed into. Share the streaming URL with your users to view the livestreaming of your class. 
+After changing environment variables, start the docker container and start your BigBlueButton class. 
+
+You will notice a new user with the name `Live` has joined your class. 
+
+On your Youtube or Facebook live streaming page (see below), you would notice your class getting streamed into. 
+
+Share the streaming URL with your users to view the live streaming of your class. 
 
 ## Install
 

@@ -66,6 +66,7 @@ BBB_STREAM_URL=rtmp://a.rtmp.youtube.com/live2/STREAM_KEY
 docker-compose up -d
 ```
 Go to [YouTube Studio](https://www.youtube.com/live_dashboard_splash?nv=1)
-Copy Stream URL and Stream key and combine them, as shown above, to create `BBB_STREAM_URL` in docker-compose.yml
+Copy Stream URL and Stream key and combine them, as shown above, to create `BBB_STREAM_URL` in docker-compose.yml.
+
 Restart docker. 
 

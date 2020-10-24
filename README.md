@@ -101,7 +101,7 @@ BBB_STREAM_URL=rtmps://live-api-s.facebook.com:443/rtmp/3723139434365952?s_bl=1&
 docker-compose down
 docker-compose up -d
 ```
-Go to the Facebook page where you want to live stream and click on Create > Live. Select 'Use Stream Key' as the method that you want to live strem with. Copy `Server URL` and `Stream Key`, joining them together, to form the value of `BBB_STREAM_URL` in docker-compose.xml.
+Go to the Facebook page where you want to live stream and click on `Create > Live`. Select `Use Stream Key` as the method that you want to live strem with. Copy `Server URL` and `Stream Key`, joining them together, to form the value of `BBB_STREAM_URL` in docker-compose.xml.
 
 Restart the docker container.
 

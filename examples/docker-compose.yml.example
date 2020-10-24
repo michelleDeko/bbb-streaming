@@ -1,15 +1,15 @@
 version: '3.3'
 services:
   bbb-streamer:
-    image: manishkatyan/bigbluebutton-livestreaming
+    image: manishkatyan/bbb-streaming
     container_name: liveStreaming
     environment:
       # BigBlueButton Server url:
-      - BBB_URL=https://your_BigBlueButton_server/bigbluebutton/api
+      - BBB_URL=https://YOUR_DOMAIN/bigbluebutton/api
       # BigBlueButton secret:
-      - BBB_SECRET=your_secret
+      - BBB_SECRET=YOUR_SECRET
       # BigBlueButton meetingID:
-      - BBB_MEETING_ID=cpp-8803375
+      - BBB_MEETING_ID=YOUR_MEETING_ID
       # start meeting (optional):
       - BBB_START_MEETING=false
       # attendee password (optional - has to be set to the attendee password of moodle/greenlight or any other frontend to allow joining via their links):

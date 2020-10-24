@@ -9,7 +9,7 @@ services:
       # BigBlueButton secret:
       - BBB_SECRET=your_secret
       # BigBlueButton meetingID:
-      - BBB_MEETING_ID=your_meetingID
+      - BBB_MEETING_ID=cpp-8803375
       # start meeting (optional):
       - BBB_START_MEETING=false
       # attendee password (optional - has to be set to the attendee password of moodle/greenlight or any other frontend to allow joining via their links):
@@ -17,7 +17,7 @@ services:
       # moderator password (optional - has to be set to the moderator password of moodle/greenlight or any other frontend to allow joining via their links):
       - BBB_MODERATOR_PASSWORD=JjeQYksarqLQ
       # meeting title (optional):
-      - BBB_MEETING_TITLE=liveStreaming Test
+      - BBB_MEETING_TITLE=liveStreaming
       # download / save BigBlueButton meeting
       - BBB_DOWNLOAD_MEETING=false
       # play intro file (can be a local file in videodata folder e.g. /video/intro.mp4 or a url of a mediastream e.g. https://my.intro.stream)

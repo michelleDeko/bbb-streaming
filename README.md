@@ -6,11 +6,39 @@ Streams a given BBB Meeting to an RTMP Server.
 
 ## Getting Started
 
-### Prerequisites
+### How it works?
 
-All you need is Docker running on your machine and a media server to stream to.
+All you need is Docker running on your machine and a media server such as Youtube or Facebook to stream to.
 
-### Configuration
+Once you fetch bbb-streaming on your BigBlueButton server, you need to update a few environment variables including access to your BigBlueButton server, ID of the BigBlueButton meeting/class that you want to stream and Youtube or Facebook RTMP url (see below).
+
+After changing environment variables, start the docker container and start your BigBlueButton class. You will notice a new user with the name `live` joined your class. In your Youtube or Facebook streaming dashboard, you would notice your class getting streamed into. Share the streaming URL with your users to view the livestreaming of your class. 
+
+### Installing Docker
+```ssh
+apt install apt-transport-https ca-certificates curl software-properties-common
+apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository “deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable”
+apt update
+apt install docker-ce
+```
+
+### Installing Docker Compose
+```ssh
+curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+### Fetching bbb-streaming
+```sh
+wget -O docker-compose.yml https://raw.githubusercontent.com/manishkatyan/bbb-streaming/master/examples/docker-compose.yml.example
+# change configuration
+docker-compose up -d
+docker-compose down
+``` 
+
+### Set Environment Variable
 
 You need to set some environment variables to run the container.
 
@@ -18,7 +46,7 @@ You need to set some environment variables to run the container.
 * BBB_URL - URL to BBB including http/https e.g. https://your_BigBlueButton_server/bigbluebutton/api
 * BBB_MEETING_ID - ID of the BBB Meeting (You can get the ID via an API call: https://your_bbb_server/bigbluebutton/api/getMeetings?checksum=<checksum>)
 * BBB_SECRET - Secret of your BBB installation (You can get the secret with: bbb-conf --secret)
-* BBB_STREAM_URL - URL of your streaming server including rtmp. Leave out to disable streaming. (e.g. rtmp://media_server_url/stream/stream_key)
+* BBB_STREAM_URL - URL of your streaming server including rtmp. (Example Youtube: rtmp://a.rtmp.youtube.com/live2/wf24-fttr-0228-uvas-d5hh, Facebook: rtmps://live-api-s.facebook.com:443/rtmp/3723139434365952?s_bl=1&s_ps=1&s_psm=1&s_sw=0&s_vt=api-s&a=Abzo1Ejb-3Wh_7qt)
 
 #### Optional settings
 * BBB_START_MEETING - start meeting
@@ -33,13 +61,6 @@ You need to set some environment variables to run the container.
 * BBB_SHOW_CHAT - shows the chat on the left side of the window (Default: false)
 * TZ - Timezone (Default: Europe/Vienna)
 
-### Starting liveStreaming
-```sh
-wget -O docker-compose.yml https://raw.githubusercontent.com/manishkatyan/bbb-streaming/master/examples/docker-compose.yml.example
-# change configuration
-docker-compose up -d
-docker-compose down
-``` 
 
 ## Streaming with API-MATE
 ```sh

@@ -33,31 +33,13 @@ You need to set some environment variables to run the container.
 * BBB_SHOW_CHAT - shows the chat on the left side of the window (Default: false)
 * TZ - Timezone (Default: Europe/Vienna)
 
-#### Chat settings
-* BBB_ENABLE_CHAT - Enable Chat feedback channel
-* BBB_REDIS_HOST - Set REDIS host (Default: redis)
-* BBB_REDIS_CHANNEL - Set REDIS channel (Default: chat)
-* BBB_CHAT_NAME - the username to join the meeting for chatting. (Default: Chat)
-
 ### Starting liveStreaming
-* wget -O docker-compose.yml https://raw.github.com/aau-zid/BigBlueButton-liveStreaming/1.0.0-beta.5/examples/docker-compose.yml.example
-* (change configuration)
-* docker-compose up -d
-* docker-compose down 
-
-### Chat feedback
-to use the user feedback via chat injection you will have to setup a website wehre the user can write comments and send them to your meeting.
-In the examples folder, there are two files you can use as starting point:
-
-* player_and_chat.php
-place this in a public webpage or create a similar webform that will be send to the processing php file sendChatMessage.php
-
-* sendChatMessage.php
-this file must be reachable by the webform and has to have access to the redis database you configured in your docker-compose file.
-
-## Known Limitations
-* the streamer does not reconnect, if the connection to BigBlueButton gets lost
-* when using breakoutrooms, the streamer will show the popup of the invitation and not be able to get back to the conference
+```sh
+wget -O docker-compose.yml https://raw.github.com/manishkatyan/BigBlueButton-liveStreaming/1.0.0-beta.5/examples/docker-compose.yml.example
+# change configuration
+docker-compose up -d
+docker-compose down
+``` 
 
 ## Streaming with API-MATE
 ```sh
@@ -67,8 +49,11 @@ bbb-conf --secret
 # Restart docker
 ```
 You can use API-MATE to quickly test streaming functionality.
-Get API-MATE url as shown above and open it in a Google Chrome browser. Ensure that meetingID and attendee Password in API-MATE is the same as in docker-compose.yml. First click on create URL and then join as a moderator. You will get into BigBlueButton session as a moderator. 
-Go to 'bbb-streaming' directory and start docker. 
+Get API-MATE url as shown above and open it in a Google Chrome browser. Ensure that meetingID and attendee Password in API-MATE is the same as in docker-compose.yml. First click on create URL and then join as a moderator. 
+
+You will get into BigBlueButton session as a moderator. 
+
+Go to 'bbb-streaming' directory and start the docker. 
 
 ## Streaming on YouTube
 ```sh
@@ -80,4 +65,8 @@ Go to [YouTube Studio](https://www.youtube.com/live_dashboard_splash?nv=1)
 Copy Stream URL and Stream key and combine them, as shown above, to create `BBB_STREAM_URL` in docker-compose.yml.
 
 Restart docker. 
+
+## Known Limitations
+* the streamer does not reconnect, if the connection to BigBlueButton gets lost
+* when using breakoutrooms, the streamer will show the popup of the invitation and not be able to get back to the conference
 

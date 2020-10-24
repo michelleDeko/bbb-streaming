@@ -72,16 +72,3 @@ The California Consumer Privacy Act (CCPA) provides certain rights to California
 Similar to the GDPR and  the CCPA, other local privacy law principles  also may institute penalties for businesses that suffer data breaches due to poor security procedures.
 Always be transparent and act upon privacy rights and federal law Regulations.
 
-## License
-BigBlueButton-liveStreaming is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-BigBlueButton-liveStreaming is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with BigBlueButton-liveStreaming.  If not, see [GNU website](https://www.gnu.org/licenses)

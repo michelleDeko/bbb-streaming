@@ -59,6 +59,17 @@ this file must be reachable by the webform and has to have access to the redis d
 * the streamer does not reconnect, if the connection to BigBlueButton gets lost
 * when using breakoutrooms, the streamer will show the popup of the invitation and not be able to get back to the conference
 
+## Streaming with API-MATE
+```sh
+# Get API-MATE URL
+bbb-conf --secret
+# Ensure meetingId and attendeePW is the same in API-MATE and docker-compose.yml
+# Restart docker
+```
+You can use API-MATE to quickly test streaming functionality.
+Get API-MATE url as shown above and open it in a Google Chrome browser. Ensure that meetingID and attendee Password in API-MATE is the same as in docker-compose.yml. First click on create URL and then join as a moderator. You will get into BigBlueButton session as a moderator. 
+Go to 'bbb-streaming' directory and start docker. 
+
 ## Streaming on YouTube
 ```sh
 # vi docker-compose.yml

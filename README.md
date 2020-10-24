@@ -1,4 +1,4 @@
-# BBB Live Streaming
+# bbb-streaming
 
 Use this app to live stream your BigBlueButton classes to Youtube or Facebook.
 

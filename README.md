@@ -1,8 +1,8 @@
 # BBB Live Streaming
 
-Livestream your BigBlueButton classes to Youtube or Facebook.
+Use this app to live stream your BigBlueButton classes to Youtube or Facebook.
 
-## Getting Started
+When you want hundreds, or even thousands of users, to join your BigBlueButton classes, you may not be able to use regular BigBlueButton setup, as that is limited to around 100 users per session. Then live streaming to your users is a powerful solution.   
 
 ### How it works?
 
@@ -12,7 +12,10 @@ Once you fetch bbb-streaming on your BigBlueButton server, you need to update a 
 
 After changing environment variables, start the docker container and start your BigBlueButton class. You will notice a new user with the name `live` joined your class. In your Youtube or Facebook streaming dashboard, you would notice your class getting streamed into. Share the streaming URL with your users to view the livestreaming of your class. 
 
-### Installing Docker
+## Install
+
+
+### 1. Installing Docker
 ```ssh
 apt install apt-transport-https ca-certificates curl software-properties-common
 apt install apt-transport-https ca-certificates curl software-properties-common
@@ -22,13 +25,13 @@ apt update
 apt install docker-ce
 ```
 
-### Installing Docker Compose
+### 2. Installing Docker Compose
 ```ssh
 curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
-### Fetching bbb-streaming
+### 3. Fetching bbb-streaming
 ```sh
 wget -O docker-compose.yml https://raw.githubusercontent.com/manishkatyan/bbb-streaming/master/examples/docker-compose.yml.example
 # change configuration
@@ -36,7 +39,7 @@ docker-compose up -d
 docker-compose down
 ``` 
 
-### Set Environment Variable
+### 4. Set Environment Variable
 
 You need to set some environment variables to run the container.
 

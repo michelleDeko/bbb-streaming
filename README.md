@@ -1,8 +1,6 @@
 # BBB Live Streaming
 
-Streams a given BBB Meeting to an RTMP Server.
-
-*License:*   [GNU GPL v3 or later](http://www.gnu.org/copyleft/gpl.html)
+Livestream your BigBlueButton classes to Youtube or Facebook.
 
 ## Getting Started
 

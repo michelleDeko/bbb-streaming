@@ -71,22 +71,50 @@ bbb-conf --secret
 # Restart docker
 ```
 You can use API-MATE to quickly test streaming functionality.
-Get API-MATE url as shown above and open it in a Google Chrome browser. Ensure that meetingID and attendee Password in API-MATE is the same as in docker-compose.yml. First click on create URL and then join as a moderator. 
+
+Get API-MATE url as shown above and open it in a Google Chrome browser. Ensure that meetingID and attendee Password in API-MATE is the same as in docker-compose.yml. 
+
+First click on create URL and then join as a moderator. 
 
 You will get into BigBlueButton session as a moderator. 
 
-Go to 'bbb-streaming' directory and start the docker. 
+Go to 'bbb-streaming' directory and start the docker, if it's not already running.
 
-## Streaming on YouTube
+You would notice a new user `Live` has joined your BigBlueButton session.  
+
+## Streaming on Youtube
 ```sh
-# vi docker-compose.yml
-BBB_STREAM_URL=rtmp://a.rtmp.youtube.com/live2/STREAM_KEY
+# Edit docker-compose.yml to update RTMP url for Youtube
+BBB_STREAM_URL=rtmp://a.rtmp.youtube.com/live2/wf28-fttr-0228-uvas-d5hh
+docker-compose down
 docker-compose up -d
 ```
-Go to [YouTube Studio](https://www.youtube.com/live_dashboard_splash?nv=1)
+Go to [Youtube Studio](https://www.youtube.com/live_dashboard_splash?nv=1)
 Copy Stream URL and Stream key and combine them, as shown above, to create `BBB_STREAM_URL` in docker-compose.yml.
 
-Restart docker. 
+Restart docker container. 
+
+## Streaming on Facebook
+```sh
+# Edit docker-compose.yml to update RTMP url for Facebook
+BBB_STREAM_URL=rtmps://live-api-s.facebook.com:443/rtmp/3723139434365952?s_bl=1&s_ps=1&s_psm=1&s_sw=0&s_vt=api-s&a=Abzo1Ejb-3Gh_7et
+docker-compose down
+docker-compose up -d
+```
+Go to the Facebook page where you want to live stream and click on Create > Live. Select 'Use Stream Key' as the method that you want to live strem with. Copy `Server URL` and `Stream Key`, joining them together, to form the value of `BBB_STREAM_URL` in docker-compose.xml.
+
+Restart the docker container.
+
+Use API-MATE (see above) to test live streaming on Facebook.
+
+On your Facebook live streaming page, you would notice the video of your BigBlueButton class is being shown. Click on `Go Live` to start live streaming. 
+
+You have several ways to share live streaming url with your users including:
+- Show Live Tab on Page: Example - https://www.facebook.com/higheredlab/live/ 
+- Live Video URL: Example - https://www.facebook.com/higheredlab/videos/408835117173971/
+- Embed Live Video: You can embed live video into any page on your website
+
+Your users can use Facebook chat, shown along side live streaming video, to interact during the live streaming. 
 
 ## Known Limitations
 * the streamer does not reconnect, if the connection to BigBlueButton gets lost

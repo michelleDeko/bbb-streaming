@@ -89,7 +89,6 @@ def bbb_browser():
         browser.find_elements_by_id('chat-toggle-button')[0].click()
         browser.find_elements_by_css_selector('button[aria-label="Users and messages toggle"]')[0].click()
         
-    browser.find_elements_by_css_selector('button[aria-label="Hide presentation"]')[0].click()
     browser.execute_script("document.querySelector('[aria-label=\"Users and messages toggle\"]').style.display='none';")
     browser.execute_script("document.querySelector('[aria-label=\"Options\"]').style.display='none';")
     browser.execute_script("document.querySelector('[aria-label=\"Actions bar\"]').style.display='none';")
@@ -118,6 +117,7 @@ def get_join_url():
     joinParams['userdata-bbb_force_listen_only'] = "true" 
     joinParams['userdata-bbb_skip_check_audio'] = 'true' 
     joinParams['joinViaHtml5'] = 'true'
+    joinParams['userdata-bbb_auto_swap_layout'] = 'true'
     return bbbUB.buildUrl("join", params=joinParams) 
 
 def stream_intro():

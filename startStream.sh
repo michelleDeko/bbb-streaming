@@ -49,6 +49,12 @@ then
    HIDE_PRESENTATION="-P";
 fi 
 
+CUSTOM_CSS="";
+if [ "${BBB_CUSTOM_CSS}" != "" ]
+then
+   CUSTOM_CSS="-C ${BBB_CUSTOM_CSS}";
+fi
+
 ATTENDEE_PASSWORD="";
 if [ "${BBB_ATTENDEE_PASSWORD}" != "" ]
 then
@@ -70,7 +76,7 @@ fi
 
 if [ "${BBB_ENABLE_CHAT}" = "true" ]
 then
-   xvfb-run -n 133 --server-args="-screen 0 1920x1080x24" python3 chat.py -s ${BBB_URL} -p ${BBB_SECRET} -i "${BBB_MEETING_ID}" -r ${BBB_REDIS_HOST} -u "${BBB_CHAT_NAME}" -c ${BBB_REDIS_CHANNEL} $START_MEETING $HIDE_PRESENTATION $ATTENDEE_PASSWORD $MODERATOR_PASSWORD -T "$MEETING_TITLE" &
+   xvfb-run -n 133 --server-args="-screen 0 1920x1080x24" python3 chat.py -s ${BBB_URL} -p ${BBB_SECRET} -i "${BBB_MEETING_ID}" -r ${BBB_REDIS_HOST} -u "${BBB_CHAT_NAME}" -c ${BBB_REDIS_CHANNEL} $START_MEETING $HIDE_PRESENTATION $CUSTOM_CSS $ATTENDEE_PASSWORD $MODERATOR_PASSWORD -T "$MEETING_TITLE" &
    sleep 10
 fi 
 

@@ -52,7 +52,7 @@ def set_up():
     options.add_argument('--window-size=1920,1080')
     options.add_argument('--window-position=0,0')
     options.add_experimental_option("excludeSwitches", ['enable-automation']);   
-    options.add_argument('--shm-size=2gb') 
+    options.add_argument('--shm-size=1gb') 
     options.add_argument('--disable-dev-shm-usage') 
     options.add_argument('--start-fullscreen') 
     

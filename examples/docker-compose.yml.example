@@ -30,6 +30,8 @@ services:
       - BBB_STREAM_URL=rtmp://media_server_url/stream/stream_key
       # Timezone (default: Europe/Vienna):
       - TZ=Europe/Vienna
+      # Hide Presentation - set this as true to show only the video and not the presentation during the webinar 
+      - BBB_HIDE_PRESENTATION=true
 
     volumes:
       - ./videodata:/video

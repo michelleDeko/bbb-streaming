@@ -31,6 +31,7 @@ parser.add_argument("-E","--endIntroAt", help="End intro at position (e.g. 01:00
 parser.add_argument("-l","--stream", help="live stream a BigBlueButton meeting",action="store_true")
 parser.add_argument("-d","--download", help="download / save a BigBlueButton meeting",action="store_true")
 parser.add_argument("-S","--startMeeting", help="start the meeting if not running",action="store_true")
+parser.add_argument("-P","--hidePresentation", help="hide presentation",action="store_true")
 parser.add_argument("-A","--attendeePassword", help="attendee password (required to create meetings)")
 parser.add_argument("-M","--moderatorPassword", help="moderator password (required to create a meeting)")
 parser.add_argument("-T","--meetingTitle", help="meeting title (required to create a meeting)")
@@ -117,7 +118,10 @@ def get_join_url():
     joinParams['userdata-bbb_force_listen_only'] = "true" 
     joinParams['userdata-bbb_skip_check_audio'] = 'true' 
     joinParams['joinViaHtml5'] = 'true'
-    joinParams['userdata-bbb_auto_swap_layout'] = 'true'
+
+    if args.hidePresentation is True:
+      joinParams['userdata-bbb_auto_swap_layout'] = 'true'
+
     return bbbUB.buildUrl("join", params=joinParams) 
 
 def stream_intro():

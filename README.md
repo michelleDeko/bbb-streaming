@@ -18,8 +18,8 @@ On your Youtube or Facebook live streaming page (see below), you would notice yo
 
 Share the streaming URL with your users to view the live streaming of your class. 
 
-### Mode of Streaming
-You can live stream in the following modes:
+### What to stream: video, presentation or both
+You can live stream in the following ways:
 * Only video: set `BBB_HIDE_PRESENTATION` to `true` in `docker-compose.xml`.
 * Only presentation: set `BBB_HIDE_PRESENTATION` to `false` in `docker-compose.xml` and don't turn on the video for the presenter. 
 * Both video and presentation: set `BBB_HIDE_PRESENTATION` to `false` in `docker-compose.xml`. The presenter's video will appear above the presentation, as in the default BigBlueButton layout.
@@ -75,7 +75,7 @@ You need to set some environment variables to run the container.
 * BBB_USER_NAME - the username to join the meeting. (Default: Live)
 * BBB_SHOW_CHAT - shows the chat on the left side of the window (Default: false)
 * TZ - Timezone (Default: Europe/Vienna)
-
+* BBB_CUSTOM_CSS - Custom CSS to change, for example size of video, using url encoded CSS. URI encode your css here: https://www.urlencoder.org/
 
 ## Streaming with API-MATE
 ```sh

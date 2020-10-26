@@ -33,6 +33,7 @@ parser.add_argument("-d","--download", help="download / save a BigBlueButton mee
 parser.add_argument("-S","--startMeeting", help="start the meeting if not running",action="store_true")
 parser.add_argument("-P","--hidePresentation", help="hide presentation",action="store_true")
 parser.add_argument("-C","--customCSS", help="custom CSS to resize video")
+parser.add_argument("-V","--viewerURL", help="url for users to watch live video")
 parser.add_argument("-A","--attendeePassword", help="attendee password (required to create meetings)")
 parser.add_argument("-M","--moderatorPassword", help="moderator password (required to create a meeting)")
 parser.add_argument("-T","--meetingTitle", help="meeting title (required to create a meeting)")
@@ -82,8 +83,10 @@ def bbb_browser():
 
     element = EC.invisibility_of_element((By.CSS_SELECTOR, '.ReactModal__Overlay'))
     WebDriverWait(browser, selelnium_timeout).until(element)
-    browser.find_element_by_id('message-input').send_keys("This meeting is streamed to: %s" % args.target.partition('//')[2].partition('/')[0])
-    browser.find_elements_by_css_selector('[aria-label="Send message"]')[0].click()
+    
+    if args.viewerURL:
+        browser.find_element_by_id('message-input').send_keys("This meeting is streamed at: %s" % args.viewerURL)
+        browser.find_elements_by_css_selector('[aria-label="Send message"]')[0].click()
     
     if args.chat:
         browser.execute_script("document.querySelector('[aria-label=\"User list\"]').parentElement.style.display='none';")
@@ -97,10 +100,10 @@ def bbb_browser():
     browser.execute_script("document.getElementById('container').setAttribute('style','margin-bottom:30px');")
 
     if args.hidePresentation is False:
-      browser.execute_script("document.getElementById('container').setAttribute('style','margin:100px');")
-      browser.execute_script("document.getElementById('container').firstChild.setAttribute('style','height:500px !important');")
-      browser.execute_script("document.getElementById('container').setAttribute('style','padding-top:200px !important');")
-      browser.execute_script("document.querySelector('.react-draggable').style.transform = 'translate(0px,-500px)'")
+        browser.execute_script("document.getElementById('container').setAttribute('style','margin:100px');")
+        browser.execute_script("document.getElementById('container').firstChild.setAttribute('style','height:500px !important');")
+        browser.execute_script("document.getElementById('container').setAttribute('style','padding-top:200px !important');")
+        browser.execute_script("document.querySelector('.react-draggable').style.transform = 'translate(0px,-500px)'")
 
 def create_meeting():
     create_params = {}

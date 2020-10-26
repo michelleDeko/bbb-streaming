@@ -30,10 +30,10 @@ services:
       - BBB_STREAM_URL=rtmp://media_server_url/stream/stream_key
       # Timezone (default: Europe/Vienna):
       - TZ=Europe/Vienna
-      # Hide Presentation - set this as true to show only the video and not the presentation during the webinar 
+      # Hide Presentation - true: show only the video, false: show both presentation and video, with video on top of the presentation 
       - BBB_HIDE_PRESENTATION=true
-      # Custom CSS to change, for example size of video, using url encoded CSS. URI encode your css here: https://www.urlencoder.org/
-      - BBB_CUSTOM_CSS=%3Aroot%7B--loader-bg%3A%23000%3B%7D.overlay--1aTlbi%7Bbackground-color%3A%23000!important%3B%7Dbody%7Bbackground-color%3A%23000!important%3B%7D
+      # URL-encoded custom CSS that you can pass to customize the streaming UI. URI encode your css here: https://www.urlencoder.org/
+      - BBB_CUSTOM_CSS=
 
     volumes:
       - ./videodata:/video

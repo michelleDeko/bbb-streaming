@@ -12,11 +12,17 @@ Once you fetch bbb-streaming on your BigBlueButton server, you need to update a 
 
 After changing environment variables, start the docker container and start your BigBlueButton class. 
 
-You will notice a new user with the name `Live` has joined your class. 
+You will notice that the live streaming bot joins your BigBlueButto class with the name `Live`. 
 
 On your Youtube or Facebook live streaming page (see below), you would notice your class getting streamed into. 
 
 Share the streaming URL with your users to view the live streaming of your class. 
+
+### Mode of Streaming
+You can live stream in the following modes:
+* Only video: set `BBB_HIDE_PRESENTATION` to `true` in `docker-compose.xml`.
+* Only presentation: set `BBB_HIDE_PRESENTATION` to `false` in `docker-compose.xml` and don't turn on the video for the presenter. 
+* Both video and presentation: set `BBB_HIDE_PRESENTATION` to `false` in `docker-compose.xml`. The presenter's video will appear above the presentation, as in the default BigBlueButton layout.
 
 ## Install
 
@@ -54,12 +60,14 @@ You need to set some environment variables to run the container.
 * BBB_MEETING_ID - ID of the BBB Meeting (You can get the ID via an API call: https://your_bbb_server/bigbluebutton/api/getMeetings?checksum=<checksum>)
 * BBB_SECRET - Secret of your BBB installation (You can get the secret with: bbb-conf --secret)
 * BBB_STREAM_URL - URL of your streaming server including rtmp. (Example Youtube: rtmp://a.rtmp.youtube.com/live2/wf24-fttr-0228-uvas-d5hh, Facebook: rtmps://live-api-s.facebook.com:443/rtmp/3723139434365952?s_bl=1&s_ps=1&s_psm=1&s_sw=0&s_vt=api-s&a=Abzo1Ejb-3Wh_7qt)
+* BBB_VIEWER_STREAM_URL - URL for your users to view live streaming. This would be displayed in public chat.
 
 #### Optional settings
-* BBB_START_MEETING - start meeting
-* BBB_ATTENDEE_PASSWORD - attendee password (optional - has to be set to the attendee password of moodle/greenlight or any other frontend to allow joining via their links)
-* BBB_MODERATOR_PASSWORD - moderator password (optional - has to be set to the moderator password of moodle/greenlight or any other frontend to allow joining via their links)
-* BBB_MEETING_TITLE - meeting title (optional - only works if the meeting is started by the liveStreaming)
+* BBB_HIDE_PRESENTATION - Set as true to hide presentation and show only video during live streaming
+* BBB_START_MEETING - For bot to start the session as a moderator
+* BBB_ATTENDEE_PASSWORD - attendee password (optional - the attendee password of moodle/greenlight/API-MATE for the bot to join the session )
+* BBB_MODERATOR_PASSWORD - moderator password (optional - the moderator password of moodle/greenlight/API-MATE for the bot to create the session as a moderator)
+* BBB_MEETING_TITLE - meeting title (optional - requires only if the bot creates the meeting as a moderator)
 * BBB_DOWNLOAD_MEETING= - download / save BigBlueButton meeting in lossless mkv format
 * BBB_INTRO= - play intro file (can be a local file in videodata folder e.g. /video/intro.mp4 or a url of a mediastream e.g. https://my.intro.stream)
 * BBB_BEGIN_INTRO_AT=04:40 - begin the intro at position (optional, e.g. 00:00:05)

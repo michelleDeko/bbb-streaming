@@ -96,7 +96,7 @@ def bbb_browser():
     browser.execute_script("document.querySelector('[aria-label=\"Actions bar\"]').style.display='none';")
     browser.execute_script("document.getElementById('container').setAttribute('style','margin-bottom:30px');")
 
-browser.execute_script("document.getElementById('container').setAttribute('style','margin:100px');")
+    browser.execute_script("document.getElementById('container').setAttribute('style','margin:100px');")
     browser.execute_script("document.getElementById('container').firstChild.setAttribute('style','height:500px !important');")
     browser.execute_script("document.getElementById('container').setAttribute('style','padding-top:200px !important');")
     browser.execute_script("document.querySelector('.react-draggable').style.transform = 'translate(0px,-500px)'")

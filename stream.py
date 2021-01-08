@@ -16,7 +16,7 @@ from datetime import datetime
 
 downloadProcess = None
 browser = None
-selelnium_timeout = 30
+selelnium_timeout = 300
 connect_timeout = 5
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))

@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python # -*- coding: utf-8 -*-
 
 import sys, argparse, time, subprocess, shlex, logging, os
 
@@ -72,7 +71,7 @@ def bbb_browser():
             create_meeting()
         except exception.bbbexception.BBBException as ERR:
             logging.info(ERR)
-    logging.info("get_join_url...")
+    logging.info("updated get_join_url...")
     join_url = get_join_url()
     logging.info(join_url)
     browser.get(join_url)
@@ -124,8 +123,8 @@ def get_join_url():
     joinParams['password'] = pwd
     joinParams['userdata-bbb_auto_join_audio'] = "true" 
     joinParams['userdata-bbb_enable_video'] = 'false' 
-    joinParams['userdata-bbb_listen_only_mode'] = "true" 
-    joinParams['userdata-bbb_force_listen_only'] = "true" 
+    joinParams['userdata-bbb_listen_only_mode'] = "false" 
+    joinParams['userdata-bbb_force_listen_only'] = "false" 
     joinParams['userdata-bbb_skip_check_audio'] = 'true' 
     joinParams['joinViaHtml5'] = 'true'
 

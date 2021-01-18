@@ -123,7 +123,7 @@ def bbb_browser():
 	logging.info(join_url)
 	browser.get(join_url)
 
-	# waits 10 sec for loading webpage
+	# waits 20 sec for loading webpage
 	time.sleep(20) 
 
 	# saves the "Close Join audio modal" in element veriable

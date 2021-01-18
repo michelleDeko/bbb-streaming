@@ -1,5 +1,6 @@
 #!/bin/sh
 
+. ./env
 
 STREAM_MEETING="";
 if [ "${BBB_STREAM_URL}" != "" ]

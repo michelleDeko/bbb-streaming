@@ -68,6 +68,47 @@ def set_up():
 
 	browser = webdriver.Chrome(executable_path='./chromedriver',options=options)
 
+def stream_setup():
+	element_success= browser.find_elements_by_xpath('//span[contains(@class,"success")]')
+	element_listen = browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')
+	logging.info(len(element_success))
+	logging.info(len(element_listen))
+	# ckecks if modal contains "listen only mode" option
+	if(element_listen):
+		logging.info('found listen only mode')
+		# clicks on listen only option
+		element_listen[0].click()
+		logging.info('clicked on listen only button')
+		time.sleep(15)
+		# confirmation for click
+		if(browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')):
+			element_listen[0].click()
+		time.sleep(10)
+		element_success=browser.find_elements_by_xpath('//span[contains(@class,"success")]')
+		#checks if modal contains "success" option
+		if(element_success):
+			logging.info('found -success- in modal')
+			element_success[0].click()
+			time.sleep(2)
+			logging.info('clicked on success button')
+			# confirmation for click
+			if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
+				element_success[0].click()
+			time.sleep(15)
+		else:
+			logging.info('Not found  -success- modal')
+	# checks if modal contains "success" option
+	elif(element_success):
+		logging.info('found success')
+		element_success[0].click()
+		if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
+			element_success[0].click()
+		logging.info('clicked on success button')
+		time.sleep(15)
+	else:
+		logging.info("Success!!. Streaming will be starting now...")
+
+
 def bbb_browser():
 	global browser
 	logging.info('Open BBB and hide elements!!')
@@ -101,81 +142,13 @@ def bbb_browser():
 		logging.info('clicked on audio join button')
 		time.sleep(10)
 		logging.info('found modal')
-		element_success= browser.find_elements_by_xpath('//span[contains(@class,"success")]')
-		element_listen = browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')
-		logging.info(len(element_success))
-		logging.info(len(element_listen))
-		# ckecks if modal contains "listen only mode" option
-		if(element_listen):
-			logging.info('found listen only mode')
-			# clicks on listen only option
-			element_listen[0].click()
-			logging.info('clicked on listen only button')
-			time.sleep(15)
-			# confirmation for click
-			if(browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')):
-				element_listen[0].click()
-			time.sleep(10)
-			element_success=browser.find_elements_by_xpath('//span[contains(@class,"success")]')
-			#checks if modal contains "success" option
-			if(element_success):
-				logging.info('found -success- in modal')
-				element_success[0].click()
-				time.sleep(2)
-				logging.info('clicked on success button')
-				# confirmation for click
-				if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
-					element_success[0].click()
-				time.sleep(15)
-			else:
-				logging.info('Not found  -success- modal')
-		# checks if modal contains "success" option
-		elif(element_success):
-			logging.info('found success')
-			element_success[0].click()
-			if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
-				element_success[0].click()
-			logging.info('clicked on success button')
-			time.sleep(15)
-		else:
-			logging.info("Success!!. Streaming will be starting now...")
-	else:
-		logging.info("Success!!. Streaming will be starting now...")
+		stream_setup()
 
 	#checks if the "ReactModal__Overlay" is still present 
 	element = browser.find_elements_by_css_selector('.ReactModal__Overlay')
 	if(element):
 		logging.info('found ReactModal__Overlay')
-		element_success=browser.find_elements_by_xpath('//span[contains(@class,"success")]')
-		element_listen = browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')
-		if(element_listen):
-			logging.info('found listen')
-			element_listen[0].click()
-			logging.info('click on listen only button')
-			time.sleep(15)
-			if(browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')):
-				element_listen[0].click()
-			
-			element_success=browser.find_elements_by_xpath('//span[contains(@class,"success")]')
-			if(element_success):
-				logging.info('found success')
-				element_success[0].click()
-				time.sleep(2)
-				logging.info('click on success button')
-				if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
-					element_success[0].click()
-				time.sleep(15)
-			else:
-				logging.info('Not found  success')
-		elif(element_success):
-			logging.info('found success')
-			element_success[0].click()
-			if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
-				element_success[0].click()
-			logging.info('click on success button')
-			time.sleep(15)
-		else:
-			logging.info("Success..")
+		stream_setup()
 	else:
 		time.sleep(20)
 		element =browser.find_elements_by_xpath('//button[contains(@aria-label,"Close Join audio modal")]')

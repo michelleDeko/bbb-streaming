@@ -3,10 +3,10 @@
 import sys, argparse, time, subprocess, shlex, logging, os
 
 from bigbluebutton_api_python import BigBlueButton, exception
-from bigbluebutton_api_python import util as bbbUtil 
+from bigbluebutton_api_python import util as bbbUtil
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys  
-from selenium.webdriver.chrome.options import Options  
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -15,8 +15,10 @@ from datetime import datetime
 
 downloadProcess = None
 browser = None
-selelnium_timeout = 30
 connect_timeout = 5
+wait_time = 10
+click_time = 2
+pageload = 11
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
@@ -47,23 +49,23 @@ bbbUB = bbbUtil.UrlBuilder(args.server,args.secret)
 def set_up():
 	global browser
 
-	options = Options()  
-	options.add_argument('--disable-infobars') 
-	options.add_argument('--no-sandbox') 
-	options.add_argument('--kiosk') 
+	options = Options()
+	options.add_argument('--disable-infobars')
+	options.add_argument('--no-sandbox')
+	options.add_argument('--kiosk')
 	options.add_argument('--window-size=1920,1080')
 	options.add_argument('--window-position=0,0')
-	options.add_experimental_option("excludeSwitches", ['enable-automation']);   
-	options.add_argument('--shm-size=2gb') 
-	options.add_argument('--disable-dev-shm-usage') 
+	options.add_experimental_option("excludeSwitches", ['enable-automation'])
+	options.add_argument('--shm-size=2gb')
+	options.add_argument('--disable-dev-shm-usage')
 	options.add_argument('--start-fullscreen')
 	# added options for allowing permissions
 	options.add_experimental_option("prefs", { \
-	"profile.default_content_setting_values.media_stream_mic": 1, 
+	"profile.default_content_setting_values.media_stream_mic": 1,
 	"profile.default_content_setting_values.media_stream_camera": 1,
-	"profile.default_content_setting_values.geolocation": 1, 
-	"profile.default_content_setting_values.notifications": 1 }) 
-		
+	"profile.default_content_setting_values.geolocation": 1,
+	"profile.default_content_setting_values.notifications": 1 })
+
 	logging.info('Starting browser!!')
 
 	browser = webdriver.Chrome(executable_path='./chromedriver',options=options)
@@ -79,22 +81,22 @@ def stream_setup():
 		# clicks on listen only option
 		element_listen[0].click()
 		logging.info('clicked on listen only button')
-		time.sleep(15)
+		time.sleep(connect_timeout)
 		# confirmation for click
 		if(browser.find_elements_by_xpath('//button[contains(@aria-label,"Listen only")]')):
 			element_listen[0].click()
-		time.sleep(10)
+		time.sleep(wait_time)
 		element_success=browser.find_elements_by_xpath('//span[contains(@class,"success")]')
 		#checks if modal contains "success" option
 		if(element_success):
 			logging.info('found -success- in modal')
 			element_success[0].click()
-			time.sleep(2)
 			logging.info('clicked on success button')
+			time.sleep(connect_timeout)
 			# confirmation for click
 			if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
 				element_success[0].click()
-			time.sleep(15)
+			time.sleep(wait_time)
 		else:
 			logging.info('Not found  -success- modal')
 	# checks if modal contains "success" option
@@ -104,7 +106,7 @@ def stream_setup():
 		if(browser.find_elements_by_xpath('//span[contains(@class,"success")]')):
 			element_success[0].click()
 		logging.info('clicked on success button')
-		time.sleep(15)
+		time.sleep(wait_time)
 	else:
 		logging.info("Success!!. Streaming will be starting now...")
 
@@ -123,8 +125,8 @@ def bbb_browser():
 	logging.info(join_url)
 	browser.get(join_url)
 
-	# waits 20 sec for loading webpage
-	time.sleep(20) 
+	# waits for the webpage
+	time.sleep(pageload)
 
 	# saves the "Close Join audio modal" in element veriable
 	element = browser.find_elements_by_xpath('//button[contains(@aria-label,"Close Join audio modal")]')
@@ -136,26 +138,26 @@ def bbb_browser():
 		# finds the close button and closes the modal
 		browser.find_elements_by_xpath('//button[contains(@aria-label,"Close Join audio modal")]')[0].click()
 		logging.info('clicked on close button')
-		time.sleep(5)
-		# finds join button and clicks on that 
+		time.sleep(connect_timeout)
+		# finds join button and clicks on that
 		browser.find_elements_by_xpath('//i[contains(@class,"icon--2q1XXw icon-bbb-audio_off")]')[0].click()
 		logging.info('clicked on audio join button')
-		time.sleep(10)
+		time.sleep(connect_timeout)
 		logging.info('found modal')
 		stream_setup()
 
-	#checks if the "ReactModal__Overlay" is still present 
+	#checks if the "ReactModal__Overlay" is still present
 	element = browser.find_elements_by_css_selector('.ReactModal__Overlay')
 	if(element):
 		logging.info('found ReactModal__Overlay')
 		stream_setup()
 	else:
-		time.sleep(20)
+		time.sleep(wait_time)
 		element =browser.find_elements_by_xpath('//button[contains(@aria-label,"Close Join audio modal")]')
 		if(element):
 			browser.find_elements_by_xpath('//button[contains(@aria-label,"Close Join audio modal")]')[0].click()
 			logging.info('click on close button')
-			time.sleep(5)
+			time.sleep(connect_timeout)
 		else:
 			logging.info('Not found ReactModal__Overlay')
 
@@ -166,29 +168,29 @@ def bbb_browser():
 			browser.find_elements_by_css_selector('[aria-label="Send message"]')[0].click()
 		else:
 			logging.info("could not find 'message-input' ")
-		
-	time.sleep(5)
+
+	time.sleep(connect_timeout)
 
 	if args.chat:
 		browser.execute_script("document.querySelector('[aria-label=\"User list\"]').parentElement.style.display='none';")
 	else:
 		if( browser.find_elements_by_xpath('//div[contains(@id,"chat-toggle-button")]') and browser.find_elements_by_xpath('//button[contains(@aria-label,"Users and messages toggle")]') ):
 			browser.find_elements_by_xpath('//div[contains(@id,"chat-toggle-button")]')[0].click()
-			time.sleep(2)
+			time.sleep(connect_timeout)
 			browser.find_elements_by_xpath('//button[contains(@aria-label,"Users and messages toggle")]')[0].click()
 		else:
 			logging.info("could not find either 'chat-toggle-button' or 'Users and messages toggle' ")
-		
+
 
 	if args.hidePresentation is False:
 		browser.execute_script("document.getElementById('container').setAttribute('style','margin:100px');")
-		time.sleep(2)
+		time.sleep(click_time)
 		browser.execute_script("document.getElementById('container').firstChild.setAttribute('style','height:500px !important');")
-		time.sleep(2)
+		time.sleep(click_time)
 		browser.execute_script("document.getElementById('container').setAttribute('style','padding-top:200px !important');")
-		time.sleep(2)
+		time.sleep(click_time)
 		browser.execute_script("document.querySelector('.react-draggable').style.transform = 'translate(0px,-500px)'")
-		time.sleep(2)
+		time.sleep(click_time)
 
 def create_meeting():
 	create_params = {}
@@ -207,11 +209,11 @@ def get_join_url():
 	joinParams['meetingID'] = args.id
 	joinParams['fullName'] = args.user
 	joinParams['password'] = pwd
-	joinParams['userdata-bbb_auto_join_audio'] = "true" 
-	joinParams['userdata-bbb_enable_video'] = 'false' 
-	joinParams['userdata-bbb_listen_only_mode'] = "true" 
-	joinParams['userdata-bbb_force_listen_only'] = "false" 
-	joinParams['userdata-bbb_skip_check_audio'] = 'true' 
+	joinParams['userdata-bbb_auto_join_audio'] = "true"
+	joinParams['userdata-bbb_enable_video'] = 'false'
+	joinParams['userdata-bbb_listen_only_mode'] = "true"
+	joinParams['userdata-bbb_force_listen_only'] = "false"
+	joinParams['userdata-bbb_skip_check_audio'] = 'true'
 	joinParams['joinViaHtml5'] = 'true'
 
 	if args.hidePresentation is True:
@@ -219,8 +221,8 @@ def get_join_url():
 
 	if args.customCSS:
 	  joinParams['userdata-bbb_custom_style'] = args.customCSS
-	
-	return bbbUB.buildUrl("join", params=joinParams) 
+
+	return bbbUB.buildUrl("join", params=joinParams)
 
 def stream_intro():
 	audio_options = '-f alsa -i pulse -ac 2 -c:a aac -b:a 160k -ar 44100'
@@ -252,7 +254,7 @@ def stream():
 	p = subprocess.call(ffmpeg_args)
 
 def download():
-	downloadFile = "/video/meeting-%s.mkv" % fileTimeStamp 
+	downloadFile = "/video/meeting-%s.mkv" % fileTimeStamp
 	audio_options = '-f alsa -i pulse -ac 2'
 	video_options = '-c:v libx264rgb -crf 0 -preset ultrafast'
 	ffmpeg_stream = 'ffmpeg -thread_queue_size 1024 -f x11grab -draw_mouse 0 -s 1920x1080  -i :%d -thread_queue_size 1024 %s %s %s' % ( 122, audio_options, video_options, downloadFile)

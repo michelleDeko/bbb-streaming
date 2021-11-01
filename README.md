@@ -162,15 +162,6 @@ Integrate Twilio into BigBlueButton so that users can join a meeting with a dial
 Better audio quality, increase recording processing speed, dynamic video profile, pagination, fix 1007/1020 errors and use apply-config.sh to manage your customizations are some key techniques for you to optimize and smoothly run your BigBlueButton servers.
   
   
-### [bbb-jamboard](https://github.com/manishkatyan/bbb-jamboard)
-
-The default whiteboard of BigBlueButton has limited features including no eraser. Many teachers wish to have a more features-rich whiteboard that would help them better in conducting online classes.
-
-With BBB-Jamboard, you can easily integrate Google Jamboard into your BigBlueButton server.
-
-Jamboard is a digital interactive whiteboard developed by Google and can be used in stead of the default BugBlueButton whiteboard. Google Jamboard has the eraser feature that has often been requested by BigBlueButton users.
-  
-  
 ### [bbb-recording-server](https://github.com/manishkatyan/bbb-recording-server)
 
 With this app, you can process BigBlueButton recordings on a separate server, called BBB Recording Server. Separation of recordings from BigBlueButton (client) improves performance as all server resources are dedicated towards conducting live classes.

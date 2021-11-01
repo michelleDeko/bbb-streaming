@@ -160,6 +160,12 @@ Integrate Twilio into BigBlueButton so that users can join a meeting with a dial
 ### [bbb-optimize](https://github.com/manishkatyan/bbb-customize)
 
 Better audio quality, increase recording processing speed, dynamic video profile, pagination, fix 1007/1020 errors and use apply-config.sh to manage your customizations are some key techniques for you to optimize and smoothly run your BigBlueButton servers.
+  
+  
+### [bbb-recording-server](https://github.com/manishkatyan/bbb-recording-server)
+
+With this app, you can process BigBlueButton recordings on a separate server, called BBB Recording Server. Separation of recordings from BigBlueButton (client) improves performance as all server resources are dedicated towards conducting live classes.
+  
 
 ### [100 Most Googled Questions on BigBlueButton](https://higheredlab.com/bigbluebutton-guide/)
 

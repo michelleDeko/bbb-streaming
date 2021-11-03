@@ -161,6 +161,10 @@ Integrate Twilio into BigBlueButton so that users can join a meeting with a dial
 
 Better audio quality, increase recording processing speed, dynamic video profile, pagination, fix 1007/1020 errors and use apply-config.sh to manage your customizations are some key techniques for you to optimize and smoothly run your BigBlueButton servers.
   
+### [bbb-admin](https://github.com/manishkatyan/bbb-admin)
+
+Scripts for BigBlueButton admins including extracting IP of users joining, participants attendance, poll answers and many other analytics. 
+  
   
 ### [bbb-recording-server](https://github.com/manishkatyan/bbb-recording-server)
 

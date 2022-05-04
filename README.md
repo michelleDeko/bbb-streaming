@@ -24,9 +24,12 @@ Share the streaming URL with your users to view the live streaming of your class
 #clone the repo
 git clone https://github.com/manishkatyan/bbb-streaming.git
 
+#run the installa script
+
+bash install-bbb-streaming.sh
+
 #update the env
-cd bbb-streaming
-cp sample-env env
+
 vi env
 
 ```

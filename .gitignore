@@ -3,3 +3,6 @@
 *.yml
 *.code-workspace
 *.iml
+test.sh
+startFfmpeg.sh
+env

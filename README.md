@@ -25,11 +25,9 @@ Share the streaming URL with your users to view the live streaming of your class
 git clone https://github.com/manishkatyan/bbb-streaming.git
 
 #run the installa script
-
 bash install-bbb-streaming.sh
 
 #update the env
-
 vi env
 
 ```
@@ -81,7 +79,7 @@ Restart the streaming.
 RTMP_URL="rtmps://live-api-s.facebook.com:443/rtmp/3723139434365952?s_bl=1&s_ps=1&s_psm=1&s_sw=0&s_vt=api-s&a=Abzo1Ejb-3Gh_7et"
 
 #Restart the streaming
-bash restart-streaming
+bash restart-streaming.sh
 ```
 Go to the Facebook page where you want to live stream and click on `Create > Live`. Select `Use Stream Key` as the method that you want to live strem with. Copy `Server URL` and `Stream Key`, joining them together, to form the value of `RTMP_URL` in env file.
 
@@ -135,12 +133,4 @@ With this app, you can process BigBlueButton recordings on a separate server, ca
 ### [100 Most Googled Questions on BigBlueButton](https://higheredlab.com/bigbluebutton-guide/)
 
 Everything you need to know about BigBlueButton including pricing, comparison with Zoom, Moodle integrations, scaling, and dozens of troubleshooting.
-
-
-
-
-
-
-
-
 

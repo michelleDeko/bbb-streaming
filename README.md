@@ -8,9 +8,9 @@ When you want hundreds, or even thousands of users, to join your BigBlueButton c
 
 All you need is Docker running on your machine and a media server such as Youtube or Facebook to stream to.
 
-Once you fetch bbb-streaming on your BigBlueButton server, you need to update a few environment variables including access to your BigBlueButton server, ID of the BigBlueButton meeting/class that you want to stream and Youtube or Facebook RTMP url (see below).
+Once you fetch bbb-streaming on your BigBlueButton server, you need to update a few environment variables including access to your BigBlueButton server, ID of the BigBlueButton meeting/class that you want to stream, Password of the meeting and Youtube or Facebook RTMP url (see below).
 
-After changing environment variables, start the docker container and start your BigBlueButton class. 
+After changing environment variables, start the streaming and start your BigBlueButton class. 
 
 You will notice that the live streaming bot joins your BigBlueButto class with the name `Live Stream`. 
 

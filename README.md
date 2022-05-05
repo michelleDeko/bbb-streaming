@@ -101,7 +101,7 @@ Your users can use Facebook chat, shown along side live streaming video, to inte
 Lean on our expertise to smoothly run your BigBlueButton server. We can: 
 1. troubleshoot your BigBlueButton servers to improve audio and video performance,
 1. install additional features such as streaming, mp4 recordings and attendance, and
-1. provide managed BigBlueButton servers, startig at $12 per month
+1. provide managed BigBlueButton servers, starting at $12 per month
 
 [Click here to learn more](https://higheredlab.com/bigbluebutton-support/)
 

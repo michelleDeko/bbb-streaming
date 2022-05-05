@@ -12,7 +12,7 @@ Once you fetch bbb-streaming on your BigBlueButton server, you need to update a 
 
 After changing environment variables, start the docker container and start your BigBlueButton class. 
 
-You will notice that the live streaming bot joins your BigBlueButto class with the name `Live`. 
+You will notice that the live streaming bot joins your BigBlueButto class with the name `Live Stream`. 
 
 On your Youtube or Facebook live streaming page (see below), you would notice your class getting streamed into. 
 
@@ -57,7 +57,7 @@ You will get into BigBlueButton session as a moderator.
 
 Go to 'bbb-streaming' directory and start the streaming, if it's not already running.
 
-You would notice a new user `Live` has joined your BigBlueButton session. 
+You would notice a new user `Live Stream` has joined your BigBlueButton session. 
 
 
 
@@ -77,7 +77,7 @@ Restart the streaming.
 ## Streaming on Facebook
 ```sh
 # Edit env file to update RTMP_URL for Facebook
-RTMP_URL="rtmps://live-api-s.facebook.com:443/rtmp/3723139434365952?s_bl=1&s_ps=1&s_psm=1&s_sw=0&s_vt=api-s&a=Abzo1Ejb-3Gh_7et"
+RTMP_URL="rtmps://live-api-s.facebook.com:443/rtmp/FB-1263745904047554-0-abcabcabc123"
 
 #Restart the streaming
 bash restart-streaming.sh

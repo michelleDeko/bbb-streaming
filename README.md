@@ -96,7 +96,7 @@ You have several ways to share live streaming url with your users including:
 
 Your users can use Facebook chat, shown along side live streaming video, to interact during the live streaming. 
 
-## BigBlueButton Tech Support
+## [BigBlueButton Tech Support](https://higheredlab.com/bigbluebutton-support/)
 ### Are you facing difficulties with your BigBlueButton server?
 Lean on our expertise to smoothly run your BigBlueButton server. We can: 
 1. troubleshoot your BigBlueButton servers to improve audio and video performance,

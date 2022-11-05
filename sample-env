@@ -1,12 +1,12 @@
 BBB_URL=https://example.com/bigbluebutton/
 
-BBB_SECRET=bigbluebutton_secret
+BBB_SECRET=super_secret
 
-MEETINGID="example-meeting-id"
-
-MEETING_PASSWORD="mp"
+MEETING_ID=bbb-meeting-id
 
 #RTMP url format will be  rtmp://<your rtmp url>/<your streaming key>
-RTMP_URL="rtmp://example.com/live2/your_streaming_key"
+RTMP_URL=rtmp://example.com/live2/your_streaming_key
 
 SHOW_PRESENTATION=true
+
+STREAMING_RESOLUTION=1920x1080

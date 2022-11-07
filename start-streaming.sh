@@ -33,4 +33,4 @@ fi
 docker run --rm  -d\
                 --name bbb-streaming \
                 --env-file $(pwd)/env \
-               streaming
+                manishkatyan/bbb-streaming:v2.5

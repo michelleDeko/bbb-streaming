@@ -1,7 +1,6 @@
 const { launch, getStream } = require("puppeteer-stream");
 const bbb = require("bigbluebutton-js");
 const Xvfb = require("xvfb");
-const { Writable } = require("stream");
 const { spawn } = require('node:child_process')
 
 
@@ -128,6 +127,7 @@ async function main() {
             ".Toastify",
             (element) => (element.style.display = "none")
         ); // Hide Toast alerts
+
         await page.waitForSelector('button[aria-label="Leave audio"]'); // Wait until Change/Leave audio button appearence
 
         await page.$eval(
@@ -203,9 +203,10 @@ async function main() {
             bbbServer.rtmpUrl
         ])
 
-        // If FFmpeg stops for any reason, close the WebSocket connection.
+
         ffmpeg.on('close', (code, signal) => {
             console.log('FFmpeg child process closed, code ' + code + ', signal ' + signal);
+            stopFfmpeg();
         });
 
         ffmpeg.stdin.on('error', (e) => {
@@ -224,6 +225,7 @@ async function main() {
     } finally {
         ffmpeg.kill('SIGINT');
         stopFfmpeg();
+
         await bbbStream.destroy()
         page.close && (await page.close());
         browser.close && (await browser.close());

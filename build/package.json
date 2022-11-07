@@ -1,0 +1,20 @@
+{
+  "name": "bbb-streaming",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bigbluebutton-js": "^0.2.0",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "fs-extra": "^10.0.0",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
+    "puppeteer-stream": "^2.1.1",
+    "xvfb": "^0.4.0"
+  }
+}

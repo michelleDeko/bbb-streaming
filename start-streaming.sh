@@ -16,14 +16,11 @@ if [ -z $BBB_SECRET ]; then
     echo "Error: BBB_SECRET cannot be empty"
     exit 0
 fi
-if [ -z $MEETINGID ]; then
-    echo "Error: MEETINGID cannot be empty"
+if [ -z $MEETING_ID ]; then
+    echo "Error: MEETING_ID cannot be empty"
     exit 0
 fi
-if [ -z $MEETING_PASSWORD ]; then
-    echo "Error: MEETING_PASSWORD cannot be empty" 
-    exit 0
-fi
+
 if [ -z $RTMP_URL ]; then
     echo "Error: RTMP_URL cannot be empty"
     exit 0
@@ -33,19 +30,7 @@ if [ -z $SHOW_PRESENTATION ]; then
     exit 0
 fi
 
-docker run --rm -d \
+docker run --rm  -d\
                 --name bbb-streaming \
-               -p "4040:4000" \
-               manishkatyan/bbb-streaming:v2.0.1
-
-
-until [ "`docker inspect -f {{.State.Running}} bbb-streaming`" == "true" ]; do
-   echo "waiting for the bbb-streaming... "
-    sleep 2;
-done;
-
-sleep 5
-echo "Starting streaming..."
-curl -X POST -H 'Content-Type: application/json' \
-             -d "{\"bbbUrl\":\"$BBB_URL\",\"bbbSecret\":\"$BBB_SECRET\",\"meetingId\": $MEETINGID,\"meetingPassword\": $MEETING_PASSWORD,\"rtmpUrl\": $RTMP_URL,\"showPresentation\": $SHOW_PRESENTATION,\"isThirdParty\": true }" \
-             http://localhost:4040/bot/start
+                --env-file $(pwd)/env \
+                manishkatyan/bbb-streaming:v2.5

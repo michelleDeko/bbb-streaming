@@ -166,6 +166,7 @@ async function main() {
 
         ffmpeg = spawn('ffmpeg', [
             "-y", "-nostats",
+            "-thread_queue_size", "4096",
 
             // FFmpeg will read input video from STDIN
             '-i', '-',
@@ -180,26 +181,26 @@ async function main() {
 
             //No browser currently supports encoding AAC, so we must transcode the audio to AAC here on the server.
             '-acodec', 'aac',
+            "-b:a", "160k",
 
             // remove background noise. You can adjust this values according to your need
-            '-af', 'highpass=f=200, lowpass=f=3000',
+            //'-af', 'highpass=f=200, lowpass=f=3000',
 
             // This option sets the size of this buffer, in packets, for the matching output stream
-            '-max_muxing_queue_size', '99999',
-
-            // better to use veryfast or fast
+            "-max_muxing_queue_size", '99999',
+            "-ar", "48000",
+            "-threads", "0",
+            "-b:v", "4000k",
             "-maxrate", "4000k",
             "-minrate", "2000k",
             "-bufsize", "8000k",
             "-g", "60",
-            '-preset', 'veryfast',
-
-            //'-vf', 'mpdecimate', '-vsync', 'vfr',
-            //'-vf', 'mpdecimate,setpts=N/FRAME_RATE/TB',
+            "-preset", "ultrafast",
+            "-tune", "zerolatency",
 
             // FLV is the container format used in conjunction with RTMP
-            '-f', 'flv',
-
+            "-f", "flv",
+            "-flvflags", "no_duration_filesize",
             bbbServer.rtmpUrl
         ])
 

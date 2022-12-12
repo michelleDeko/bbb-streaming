@@ -83,7 +83,7 @@ async function main() {
     let url = api.administration.join(
         "Live Stream",
         bbbServer.meetingId,
-        'password',
+        process.env.MEETING_PASSWORD,
         bbbJoinParams
     );
     console.log("BBB Url: ", url);

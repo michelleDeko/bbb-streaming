@@ -128,12 +128,17 @@ async function main() {
             (element) => (element.style.display = "none")
         ); // Hide Toast alerts
 
-        await page.waitForSelector('button[aria-label="Leave audio"]'); // Wait until Change/Leave audio button appearence
+        try {
 
-        await page.$eval(
-            '[aria-label="Actions bar"]',
-            (element) => (element.style.display = "none")
-        );
+            await page.waitForSelector('button[aria-label="Leave audio"]'); // Wait until Change/Leave audio button appearence
+
+            await page.$eval(
+                '[aria-label="Actions bar"]',
+                (element) => (element.style.display = "none")
+            );
+        } catch (error) {
+            console.log(error)
+        }
 
         await page.$eval(
             '[aria-label="Users and messages toggle"]',

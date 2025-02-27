@@ -20,7 +20,7 @@ RUN rm -rf node_modules
 
 COPY package.* .
 RUN npm install
-COPY stream.js ./stream.js
+COPY build/stream.js ./stream.js
 
 CMD ["node","stream.js" ]
 

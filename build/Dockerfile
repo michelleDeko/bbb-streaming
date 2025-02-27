@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install curl gnupg psmisc wget -y \
 RUN echo ""> /etc/apt/sources.list.d/google.list
 
 
-RUN apt update -y && apt remove google-chrome-stable -y &&  wget --no-verbose -O /tmp/chrome.deb  http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_104.0.5112.101-1_amd64.deb \
+RUN apt update -y && apt remove google-chrome-stable -y &&  wget --no-verbose -O /tmp/chrome.deb  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_133.0.6943.141-1_amd64.deb \
   && apt install -y /tmp/chrome.deb \
   && rm /tmp/chrome.deb
 

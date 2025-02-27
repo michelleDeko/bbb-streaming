@@ -50,6 +50,9 @@ const options = {
         "--start-fullscreen",
         "--app=https://www.google.com/",
         `--window-size=${width},${height}`,
+        "--autoplay-policy=no-user-gesture-required",
+        "--use-fake-ui-for-media-stream",
+        "--use-fake-device-for-media-stream",
     ],
 };
 
@@ -107,13 +110,20 @@ async function main() {
 
         //Select Listen Only Mode
         try {
-            await page.waitForSelector('[aria-label="Listen only"]');
-            await page.click('[aria-label="Listen only"]', {
-                waitUntil: "domcontentloaded",
-            });
-            await page.waitForTimeout(5000);
-        } catch (error) {
-            console.log("Listen only button not found");
+        await page.waitForXPath("//button[contains(@aria-label, 'Listen only')]", { timeout: 5000 });
+        const buttons = await page.$x("//button[contains(@aria-label, 'Listen only')]");
+        if (buttons.length > 0) {
+                await buttons[0].click();
+                await page.waitForTimeout(5000);
+        } else {
+                console.log("Listen only button not found");
+                await page.evaluate(() => {
+                console.log("Alle Buttons:");
+                document.querySelectorAll("button").forEach(b => console.log(b.innerText, b.getAttribute("aria-label")));
+                });
+
+        }
+
         }
 
         // Hides user list and chat is true

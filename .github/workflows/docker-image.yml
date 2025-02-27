@@ -25,7 +25,7 @@ jobs:
 
     - name: Push Docker image to GHCR
       run: |
-        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/bbb-streaming
+        IMAGE_NAME=ghcr.io/${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]'}/bbb-streaming
         TAG=latest
         docker push $IMAGE_NAME:$TAG
 

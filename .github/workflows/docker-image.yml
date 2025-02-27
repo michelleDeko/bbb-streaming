@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build-and-push:
@@ -14,18 +12,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Convert GitHub username to lowercase
+      run: echo "GHCR_USER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
     - name: Login to GitHub Container Registry (GHCR)
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GHCR_USER --password-stdin
 
     - name: Build the Docker image
       run: |
-        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/bbb-streaming
-        TAG=latest  # Hier kannst du auch eine spezifische Version setzen
+        IMAGE_NAME=ghcr.io/$GHCR_USER/bbb-streaming
+        TAG=latest
         docker build . --file build/Dockerfile --tag $IMAGE_NAME:$TAG
 
     - name: Push Docker image to GHCR
       run: |
-        IMAGE_NAME=ghcr.io/${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]'}/bbb-streaming
+        IMAGE_NAME=ghcr.io/$GHCR_USER/bbb-streaming
         TAG=latest
         docker push $IMAGE_NAME:$TAG
-

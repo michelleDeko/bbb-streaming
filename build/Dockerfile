@@ -19,7 +19,7 @@ WORKDIR /usr/src/app
 RUN rm -rf node_modules
 
 COPY package.* .
-COPY build/packages.json ./packages.json
+COPY build/package.json ./package.json
 RUN npm install
 COPY build/stream.js ./stream.js
 

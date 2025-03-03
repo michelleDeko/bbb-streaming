@@ -72,7 +72,7 @@ async function main() {
     }
 
     var bbbJoinParams = {
-        "userdata-bbb_force_listen_only": "true",
+        "userdata-bbb_force_listen_only": "false",
         "userdata-bbb_listen_only_mode": "true",
         "userdata-bbb_skip_check_audio": "true",
         "userdata-bbb_show_public_chat_on_login": "true",

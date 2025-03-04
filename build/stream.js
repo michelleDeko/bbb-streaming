@@ -166,7 +166,7 @@ async function main() {
             ignoreMutedMedia: true,
             mimeType: 'video/webm;codecs=h264'
         });
-        console.log("Started stream with mimeType:", bbbStream.mimetype);
+        console.log("Started stream with mimeType:", bbbStream.mimeType);
 
         // On stream data  write it to ffmpeg stdin
         bbbStream.on('data', (chunk) => {

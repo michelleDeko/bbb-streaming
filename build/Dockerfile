@@ -5,8 +5,11 @@ RUN apt-get update && apt-get install -y curl gnupg psmisc wget \
   && curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | tee /etc/apt/keyrings/google-chrome.asc > /dev/null \
   && echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.asc] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list \
   && apt-get update \
-  && apt-get install -y google-chrome-stable xvfb ffmpeg \
+  && apt-get install -y xvfb ffmpeg \
   && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://chrome-versions.com/google-chrome-stable-104.0.5112.101-1.deb
+RUN dpgk -i google-chrome-stable-104.0.5112.101-1.deb
 
 WORKDIR /usr/src/app
 RUN rm -rf node_modules

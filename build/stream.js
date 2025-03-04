@@ -72,7 +72,7 @@ async function main() {
     }
 
     var bbbJoinParams = {
-        "userdata-bbb_force_listen_only": "true",
+        // "userdata-bbb_force_listen_only": "false",
         "userdata-bbb_listen_only_mode": "true",
         "userdata-bbb_skip_check_audio": "true",
         "userdata-bbb_show_public_chat_on_login": "true",
@@ -110,20 +110,14 @@ async function main() {
 
         //Select Listen Only Mode
         try {
-        await page.waitForXPath("//button[contains(@aria-label, 'Listen only')]", { timeout: 5000 });
-        const buttons = await page.$x("//button[contains(@aria-label, 'Listen only')]");
-        if (buttons.length > 0) {
-                await buttons[0].click();
-                await page.waitForTimeout(5000);
-        } else {
-                console.log("Listen only button not found");
-                await page.evaluate(() => {
-                console.log("Alle Buttons:");
-                document.querySelectorAll("button").forEach(b => console.log(b.innerText, b.getAttribute("aria-label")));
-                });
-
-        }
-
+            await page.waitForSelector('[aria-label="Listen only"]');
+            await page.click('[aria-label="Listen only"]', {
+                waitUntil: "domcontentloaded",
+            });
+            console.log("Listen only button found!");
+            await page.waitForTimeout(5000);
+        } catch (error) {
+            console.log("Listen only button not found");
         }
 
         // Hides user list and chat is true

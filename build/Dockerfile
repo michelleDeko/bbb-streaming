@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y curl gnupg psmisc wget \
   && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://chrome-versions.com/google-chrome-stable-104.0.5112.101-1.deb
-RUN dpgk -i google-chrome-stable-104.0.5112.101-1.deb
+RUN dpkg -i google-chrome-stable-104.0.5112.101-1.deb
 
 WORKDIR /usr/src/app
 RUN rm -rf node_modules

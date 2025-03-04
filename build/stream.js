@@ -229,9 +229,15 @@ async function main() {
         ffmpeg.stderr.on('data', (data) => {
             console.log('FFmpeg STDERR:', data.toString());
         });
-        await page.waitForSelector('[data-test="meetingEndedModalTitle"]', {
-            timeout: 0,
-        });
+
+        try {
+            await page.waitForSelector('[data-test="meetingEndedModalTitle"]', {
+                timeout: 0,
+            }); 
+        } catch (error) {
+            console.log("meetingEndedModalTitle not found");
+        }
+
         console.log("The BBB session has ended");
     } catch (error) {
         console.log(error);

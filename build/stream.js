@@ -166,13 +166,17 @@ async function main() {
             ignoreMutedMedia: true,
             mimeType: 'video/webm;codecs=h264'
         });
+        console.log("Started stream with mimeType:", bbbStream.mimetype);
 
         // On stream data  write it to ffmpeg stdin
         bbbStream.on('data', (chunk) => {
+            console.log("Received stream chunk of size:", chunk.length);
             if (ffmpeg) {
                 ffmpeg.stdin.write(chunk);
             }
         });
+
+        await page.screenshot({ path: "debug.png" });
 
         // on stream data write it to ffmpeg stdin
 

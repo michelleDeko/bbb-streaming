@@ -22,7 +22,7 @@ jobs:
       run: |
         IMAGE_NAME=ghcr.io/$GHCR_USER/bbb-streaming
         TAG=latest
-        docker build . --file build/Dockerfile --tag $IMAGE_NAME:$TAG
+        docker build build/. --file build/Dockerfile --tag $IMAGE_NAME:$TAG
 
     - name: Push Docker image to GHCR
       run: |

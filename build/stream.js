@@ -164,7 +164,7 @@ async function main() {
             videoBitsPerSecond: 2500000,
             frameSize: 30,
             ignoreMutedMedia: true,
-            mimeType: 'video/mp4;codecs=avc1.42E01E'
+            mimeType: 'video/webm;codecs=h264'
         });
         console.log("Started stream with mimeType:", bbbStream.mimeType);
 

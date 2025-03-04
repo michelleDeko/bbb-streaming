@@ -100,7 +100,10 @@ async function main() {
 
         page = pages[0];
 
-        await page._client.send("Emulation.clearDeviceMetricsOverride");
+        await page.target().createCDPSession().then(client => {
+            console.log("Emulation Emulation.clearDeviceMetricsOverride sent.");
+            return client.send("Emulation.clearDeviceMetricsOverride");
+         });
 
         await page.goto(url, { waitUntil: "networkidle2" }).catch((e) => {
             console.error("URL unreachable: ", url);

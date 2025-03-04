@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y curl gnupg psmisc wget \
 RUN wget https://chrome-versions.com/google-chrome-stable-104.0.5112.101-1.deb
 RUN dpkg -i google-chrome-stable-104.0.5112.101-1.deb
 
-RUN wget https://debian.sipwise.com/debian-security/pool/main/f/ffmpeg/ffmpeg_4.3.5-0+deb11u1_amd64.deb
-RUN dpkg -i ffmpeg_4.3.5-0+deb11u1_amd64.deb
+#RUN wget https://debian.sipwise.com/debian-security/pool/main/f/ffmpeg/ffmpeg_4.3.5-0+deb11u1_amd64.deb
+#RUN dpkg -i ffmpeg_4.3.5-0+deb11u1_amd64.deb
 
 WORKDIR /usr/src/app
 RUN rm -rf node_modules

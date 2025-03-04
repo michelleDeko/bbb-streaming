@@ -168,6 +168,14 @@ async function main() {
         });
         console.log("Started stream with mimeType:", bbbStream.mimeType);
 
+        // Does puppeteer stream video?
+        const isPlayingVideo = await page.evaluate(() => {
+            const video = document.querySelector('video');
+            return video && !video.paused && video.readyState === 4;
+        });
+        console.log("Video playing:", isPlayingVideo);
+
+
         // On stream data  write it to ffmpeg stdin
         bbbStream.on('data', (chunk) => {
             console.log("Received stream chunk of size:", chunk.length);
